@@ -41,3 +41,28 @@ class CSDHandler():
         experiment_path = os.path.join(self.path, experiment_id)
         pmt_path = os.path.join(experiment_path, "pmt.npy")
         return np.load(pmt_path)
+
+    def load_all_trajs(self):
+        experiment_ids = os.listdir(self.path)
+        p, p_type = [], []
+        for e_id in experiment_ids:
+            pi, pti = self.load_experiment_trajs(e_id)
+            p += pi
+            p_type += pti
+        return p, p_type
+
+    def load_all_cmos(self):
+        experiment_ids = os.listdir(self.path)
+        all_cmos = []
+        for e_id in experiment_ids:
+            c_cmos = self.load_experiment_cmos(e_id)
+            all_cmos.append(c_cmos)
+        return all_cmos
+
+    def load_all_pmt(self):
+        experiment_ids = os.listdir(self.path)
+        all_pmt = []
+        for e_id in experiment_ids:
+            c_pmt = self.load_experiment_pmt(e_id)
+            all_pmt.append(c_pmt)
+        return all_pmt
