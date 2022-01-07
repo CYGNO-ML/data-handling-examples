@@ -1,8 +1,8 @@
 from csdlib import CSDHandler
 import matplotlib.pyplot as plt
 
-dataset_path = "../../dataset-generator/output"
-experiment_id = "0000"
+dataset_path = "../../CYGNO-ML-DATASET"
+experiment_id = "0001"
 
 # Create an instance of the dataset handler providing the path
 dataset = CSDHandler(dataset_path)
@@ -21,6 +21,10 @@ fig = plt.figure(figsize=(3, 10))
 gs = fig.add_gridspec(3, 1, height_ratios=[0.45, 0.45, 0.1])
 
 ax1 = fig.add_subplot(gs[0, 0], projection="3d")
+ax1.set_xlabel('x')
+ax1.set_ylabel('y')
+ax1.set_zlabel('z')
+
 for p in particles:
     x = p[:, 0]
     y = p[:, 1]
@@ -43,7 +47,8 @@ ax2.set_title("CMOS")
 
 # Plot pmt
 ax3 = fig.add_subplot(gs[2, 0])
-ax3.plot(pmt[::10000])
+if pmt is not None:
+    ax3.plot(pmt[::10000])
 ax3.set_title("PMT")
 
 fig.tight_layout()
