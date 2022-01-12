@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 
 dataset_path = "../../CYGNO-ML-DATASET"
 experiment_id = "0001"
+flip = False
+
 
 # Create an instance of the dataset handler providing the path
 dataset = CSDHandler(dataset_path)
@@ -42,7 +44,8 @@ ax1.set_title("Trajectories of particles inside the TPC detector")
 
 # Plot image
 ax2 = fig.add_subplot(gs[1, 0])
-ax2.imshow(image)
+origin = 'lower' if flip else 'upper'
+ax2.imshow(image, origin=origin)
 ax2.set_title("CMOS")
 
 # Plot pmt
