@@ -29,7 +29,11 @@ class CSDHandler():
         with open(desc_path, encoding="utf-8") as json_file:
             desc = json.load(json_file)
         return desc
-    
+
+    def load_traj(self, p_file):
+        p = np.loadtxt(p_file, ndmin=2)
+        return p
+
     def load_experiment_trajs(self, experiment_id):
         desc = self.load_experiment_description(experiment_id)
         particles, p_types = [], []
