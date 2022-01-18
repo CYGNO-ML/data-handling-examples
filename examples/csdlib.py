@@ -39,8 +39,9 @@ class CSDHandler():
         particles, p_types = [], []
         for p in desc["particles_info"]:
             p_file = os.path.join(self.path, p["file"])
-            particles.append(np.loadtxt(p_file))
-            p_types.append(p_decoding[p["type"]])
+            particles.append(self.load_traj(p_file))
+            p_types.append(p["type"])
+            # p_types.append(p_decoding[p["type"]])
         return particles, p_types
     
     def load_experiment_cmos(self, experiment_id):
