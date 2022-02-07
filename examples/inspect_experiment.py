@@ -1,13 +1,13 @@
-from csdlib import CSDHandler
+from cygnods import CygnoDataset
 import matplotlib.pyplot as plt
 
 dataset_path = "../../CYGNO-ML-DATASET"
-experiment_id = "0001"
-flip = False
+experiment_id = "0011"
+flip = True
 
 
 # Create an instance of the dataset handler providing the path
-dataset = CSDHandler(dataset_path)
+dataset = CygnoDataset(dataset_path)
 
 # Load image
 image = dataset.load_experiment_cmos(experiment_id)
